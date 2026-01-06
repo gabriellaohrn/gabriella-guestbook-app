@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gabriella-db-service
+  namespace: grupp5
+spec:
+  selector:
+    app: gabriella-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

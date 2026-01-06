@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gabriella-python-app
+  namespace: grupp5
+  labels:
+    app: gabriella-python-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gabriella-python-app
+  template:
+    metadata:
+      labels:
+        app: gabriella-python-app
+    spec:
+      containers:
+      - name: python-app
+        image: quay.io/gabriellaohrn/gabriellas-python-app:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://user:password@hostname:5432/dbname"
