@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gabriella-frontend
+  namespace: grupp5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gabriella-frontend
+  template:
+    metadata:
+      labels:
+        app: gabriella-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: quay.io/gabohr/guestbook-frontend:latest
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8080
