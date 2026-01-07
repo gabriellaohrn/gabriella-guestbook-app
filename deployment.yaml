@@ -24,7 +24,7 @@ spec:
             cpu: "100m"
             memory: "256Mi"
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
         env:
         - name: DATABASE_URL
           value: "postgresql://gabriella_user:gabriella_password@gabriella-db:5432/guestbook_db"
