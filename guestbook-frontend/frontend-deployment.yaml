@@ -3,8 +3,10 @@ kind: Deployment
 metadata:
   name: gabriella-frontend
   namespace: grupp5
+  labels:
+    app: gabriella-frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: gabriella-frontend
@@ -14,14 +16,10 @@ spec:
         app: gabriella-frontend
     spec:
       containers:
-      - name: frontend
+      - name: gabriella-frontend
         image: quay.io/gabohr/guestbook-frontend:latest
-        resources:
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-          requests:
-            cpu: "100m"
-            memory: "256Mi"
         ports:
         - containerPort: 8080
+        env:
+        - name: BACKEND_HOST
+          value: gabriella-backend
