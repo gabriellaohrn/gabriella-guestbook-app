@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gabriella-guestbook-app
+  labels:
+    app: gabriella-guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gabriella-guestbook
+  template:
+    metadata:
+      labels:
+        app: gabriella-guestbook
+    spec:
+      containers:
+      - name: guestbook-container
+        image: quay.io/gabohr/guestbook-backend:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: "gabriella-db"
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: gabriella-db-secret
+              key: database
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: gabriella-db-secret
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: gabriella-db-secret
+              key: password
