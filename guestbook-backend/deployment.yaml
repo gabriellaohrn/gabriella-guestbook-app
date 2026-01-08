@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gabriella-guestbook-app
+  name: gabriella-backend
+  namespace: grupp5
   labels:
-    app: gabriella-guestbook
+    app: gabriella-backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: gabriella-guestbook
+      app: gabriella-backend
   template:
     metadata:
       labels:
-        app: gabriella-guestbook
+        app: gabriella-backend
     spec:
       containers:
-      - name: guestbook-container
+      - name: gabriella-backend-container
         image: quay.io/gabohr/guestbook-backend:latest
         ports:
         - containerPort: 8080
