@@ -16,7 +16,7 @@ spec:
         app: gabriella-backend
     spec:
       containers:
-      - name: gabriella-backend-container
+      - name: guestbook-container
         image: quay.io/gabohr/guestbook-backend:latest
         ports:
         - containerPort: 8080
