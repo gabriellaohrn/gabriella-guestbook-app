@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: gabriella-db
   namespace: grupp5
+  labels:
+    app: gabriella-db
 spec:
   replicas: 1
   selector:
@@ -16,21 +18,28 @@ spec:
       containers:
       - name: postgres
         image: postgres:15
-        resources:
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-          requests:
-            cpu: "100m"
-            memory: "256Mi"
         ports:
         - containerPort: 5432
         env:
-        - name: POSTGRES_USER
-          value: "gabriella_user"
-        - name: POSTGRES_PASSWORD
-          value: "gabriella_password"
         - name: POSTGRES_DB
-          value: "guestbook_db"
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
+          valueFrom:
+            secretKeyRef:
+              name: gabriella-db-secret
+              key: database
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: gabriella-db-secret
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: gabriella-db-secret
+              key: password
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"

@@ -3,10 +3,13 @@ kind: Service
 metadata:
   name: gabriella-db
   namespace: grupp5
+  labels:
+    app: gabriella-db
 spec:
+  type: ClusterIP
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
   selector:
     app: gabriella-db
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
