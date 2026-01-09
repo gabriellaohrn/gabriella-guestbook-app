@@ -30,17 +30,19 @@ spec:
         env:
         - name: DB_HOST
           value: "gabriella-db"
-        - name: DB_NAME
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_DATABASE
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: database
-        - name: DB_USER
+        - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: username
-        - name: DB_PASS
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
