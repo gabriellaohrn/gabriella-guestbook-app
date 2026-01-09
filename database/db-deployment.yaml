@@ -15,27 +15,31 @@ spec:
       labels:
         app: gabriella-db
     spec:
+      securityContext:
+        fsGroup: 26
       containers:
       - name: postgres
-        image: postgres:15
+        image: quay.io/fedora/postgresql-16:latest
         ports:
         - containerPort: 5432
         env:
-        - name: POSTGRES_DB
+        - name: POSTGRESQL_DATABASE
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: database
-        - name: POSTGRES_USER
+        - name: POSTGRESQL_USER
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: username
-        - name: POSTGRES_PASSWORD
+        - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: password
+        - name: PGDATA
+          value: /var/lib/pgsql/data/userdata
         resources:
           requests:
             memory: "128Mi"
@@ -43,3 +47,10 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "200m"
+        volumeMounts:
+        - name: gabriella-db-storage
+          mountPath: /var/lib/pgsql/data
+      volumes:
+      - name: gabriella-db-storage
+        persistentVolumeClaim:
+          claimName: gabriella-db-pvc
