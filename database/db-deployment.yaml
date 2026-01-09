@@ -16,7 +16,6 @@ spec:
         app: gabriella-db
     spec:
       securityContext:
-        fsGroup: 26
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
