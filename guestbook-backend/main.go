@@ -162,7 +162,7 @@ func (app *App) getEntriesHandler(w http.ResponseWriter, r *http.Request) {
 		LIMIT 100
 	`)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, 'some error', http.StatusInternalServerError)
 		return
 	}
 	defer rows.Close()
