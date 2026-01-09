@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gabriella-python-service
+  name: gabriella-frontend
   namespace: grupp5
   labels:
     app: gabriella-frontend
