@@ -30,17 +30,17 @@ spec:
         ports:
         - containerPort: 5432
         env:
-        - name: POSTGRES_DB
+        - name: POSTGRESQL_DATABASE
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: database
-        - name: POSTGRES_USER
+        - name: POSTGRESQL_USER
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
               key: username
-        - name: POSTGRES_PASSWORD
+        - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
