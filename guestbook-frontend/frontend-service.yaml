@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gabriella-python-service
+  namespace: grupp5
+  labels:
+    app: gabriella-frontend
+spec:
+  selector:
+    app: gabriella-frontend
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP
