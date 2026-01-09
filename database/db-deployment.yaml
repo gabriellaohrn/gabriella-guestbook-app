@@ -60,4 +60,4 @@ spec:
       volumes:
       - name: gabriella-db-storage
         persistentVolumeClaim:
-          claimName: gabriella-db-pvc
+          claimName: gabriella-db-pvc-new
