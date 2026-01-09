@@ -15,9 +15,18 @@ spec:
       labels:
         app: gabriella-backend
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
-      - name: guestbook-container
-        image: quay.io/gabohr/guestbook-backend:latest
+      - name: backend
+        image: quay.io/jonasbjork/guestbook-backend:latest
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
         ports:
         - containerPort: 8080
         env:
@@ -33,7 +42,7 @@ spec:
             secretKeyRef:
               name: gabriella-db-secret
               key: username
-        - name: DB_PASSWORD
+        - name: DB_PASS
           valueFrom:
             secretKeyRef:
               name: gabriella-db-secret
