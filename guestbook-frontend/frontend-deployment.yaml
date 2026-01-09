@@ -15,20 +15,18 @@ spec:
       labels:
         app: gabriella-frontend
     spec:
-      securityContext:
-        runAsNonRoot: true
-        seccompProfile:
-          type: RuntimeDefault
       containers:
       - name: frontend
         image: quay.io/jonasbjork/guestbook-frontend:latest
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
         env:
         - name: BACKEND_HOST
           value: "gabriella-backend"
