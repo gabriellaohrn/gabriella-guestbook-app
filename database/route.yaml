@@ -6,6 +6,6 @@ metadata:
 spec:
   to:
     kind: Service
-    name: gabriella-python-service
+    name: gabriella-frontend
   port:
     targetPort: 8080
