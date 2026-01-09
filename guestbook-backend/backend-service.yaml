@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gabriella-backend
+  name: gabriella-python-service
   namespace: grupp5
   labels:
-    app: gabriella-backend
+    app: gabriella-python-service
 spec:
   selector:
-    app: gabriella-backend
+    app: gabriella-python-service
   ports:
   - protocol: TCP
     port: 8080
