@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gabriella-db-pvc
+  name: gabriella-db-pvc-new
   namespace: grupp5
 spec:
   accessModes:
