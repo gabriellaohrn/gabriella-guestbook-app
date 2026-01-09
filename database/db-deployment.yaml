@@ -27,7 +27,7 @@ spec:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
-            -ALL
+            - ALL
         ports:
         - containerPort: 5432
         env:
